@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.4.0 - 2016-12-28
+
+### Added
+
+  - VNC shortcut scripts.
+
 ## 0.3.0 - 2016-12-27
 
 ### Added
