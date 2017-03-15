@@ -11,6 +11,11 @@ function make_shortcuts() {
 
 DIRNAME="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+PREFIX="docker"
+make_shortcuts
+alias docker-shortcuts="$SHORTCUTS"
+docker-shortcuts
+
 PREFIX="git"
 make_shortcuts
 alias git-shortcuts="$SHORTCUTS"
