@@ -17,8 +17,12 @@ function os-install-disk() {
   rm $IMAGE_FILE
 }
 
-function os-install-basics() {
+function os-install-updates() {
   sudo apt-get update && sudo apt-get dist-upgrade
+}
+
+function os-install-basics() {
+  os-install-updates
 
   sudo apt-get install \
     vim tree wget \ # Essential terminal tools.
@@ -33,4 +37,6 @@ function os-install-basics() {
   sudo dpkg -i /tmp/atom.deb
   sudo apt-get install -f
   rm /tmp/atom.deb
+
+  sudo apt-get autoremove
 }
