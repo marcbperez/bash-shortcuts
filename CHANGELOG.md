@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.6.0 - 2017-03-16
+
+### Added
+
+  - Gradle wrapper for this project.
+  - Gradle build script for this project.
+  - Dockerfile for this project.
+  - Docker-compose manifest for this project.
+  - OS user shortcut scripts.
+
+### Changed
+
+  - README file with new usage instructions.
+  - Git ignore list to include build files.
+  - OS install shortcut scripts by refactoring.
+
 ## 0.5.0 - 2017-03-15
 
 ### Added
