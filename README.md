@@ -1,11 +1,12 @@
 # bash-shortcuts
 
-Bash scripts to automate daily repetitive tasks.
+Bash scripts to automate daily repetitive tasks. Includes shortcuts for Git,
+VNC, Docker and other miscelaneous actions.
 
 ## Installation
 
-Start by downloading the project and building the sources. The following
-commands will do the task on most Debian based Linux distributions.
+Start by downloading and building the project when necessary. The following
+commands will do the job on most Debian based Linux distributions.
 
 ```bash
 git clone https://github.com/marcbperez/bash-shortcuts
