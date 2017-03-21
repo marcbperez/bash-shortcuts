@@ -1,8 +1,9 @@
 defaultTasks "wrapper", "watch", "dependencies", "build", "test"
 
-def aptPackages = ["libspock-java", "pandoc", "node-request", "node-less"]
+def aptPackages = ["libspock-java"]
 def path = System.getProperty("user.dir")
 def srcDir = "${path}/src"
+def testDir = "${path}/test"
 
 task wrapper(type: Wrapper) {
   description "Creates the project wrapper."
@@ -11,7 +12,7 @@ task wrapper(type: Wrapper) {
 
 task watch(type: Exec) {
   description "Watches for changes."
-  inputs.dir srcDir
+  inputs.files(srcDir, testDir)
   commandLine "true"
 
   new ByteArrayOutputStream()
@@ -27,7 +28,16 @@ task dependencies() {
   }
 }
 
-task dependenciesApt(type: Exec) {
+task aptUpdate(type: Exec) {
+  description "Updates APT repository information."
+  workingDir path
+  commandLine "apt-get"
+  args "update"
+
+  new ByteArrayOutputStream()
+}
+
+task dependenciesApt(type: Exec, dependsOn: aptUpdate) {
   description "Installs APT dependencies."
   workingDir path
   commandLine "apt-get"
@@ -37,7 +47,7 @@ task dependenciesApt(type: Exec) {
 }
 
 task build() {
-  description "Builds the project sources."
+  description "Builds all project sources."
 
   dependsOn {
     tasks.findAll { task ->
@@ -56,11 +66,10 @@ task test() {
   }
 }
 
-fileTree(dir: "${srcDir}/test", include: "**/*.groovy").each { File testFile ->
+fileTree(dir: "${testDir}", include: "**/*.groovy").each { File testFile ->
   def fileName = testFile.getName().split("\\.")[0]
-  def taskName = "test${fileName}"
 
-  task "${taskName}"(type: Exec) {
+  task "test${fileName}"(type: Exec) {
     description "Runs the ${fileName} case."
     workingDir path
     commandLine "groovy"
