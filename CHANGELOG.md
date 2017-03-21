@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.6.1 - 2017-03-21
+
+### Added
+
+  - Cases for the supporting files.
+  - Cases for the build environment.
+
+### Changed
+
+  - README file with new usage instructions.
+  - Gradle wrapper for this project.
+  - Gradle build script for this project.
+
 ## 0.6.0 - 2017-03-16
 
 ### Added
