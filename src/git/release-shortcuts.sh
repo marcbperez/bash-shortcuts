@@ -11,7 +11,8 @@ function git-create-release() {
 
   while true; do
     echo "Create $RELEASENAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -35,7 +36,8 @@ function git-work-on-release() {
 
   while true; do
     echo "Work on $RELEASENAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -45,13 +47,18 @@ function git-work-on-release() {
   done
 
   git checkout "$RELEASENAME"
-  atom .
 
   while true; do
-    echo "Is the version bumped and all the commits made on $RELEASENAME?"
-    echo "C for the commit tool, M to merge back or E to exit."
+    echo "Are all the commits made on $RELEASENAME?"
+    echo "  - S to run ./commit-script.sh"
+    echo "  - A for the editor"
+    echo "  - C for the commit tool"
+    echo "  - M to merge back"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
+      [S]* ) source ./commit-script.sh ;;
+      [A]* ) atom . ;;
       [C]* ) meld . ;;
       [M]* ) break ;;
       [E]* ) return ;;
@@ -73,7 +80,8 @@ function git-merge-back-release() {
 
   while true; do
     echo "Merge back $RELEASENAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -99,7 +107,8 @@ function git-merge-back-develop() {
 
   while true; do
     echo "Merge back develop version $VERSION?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;

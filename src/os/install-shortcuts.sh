@@ -22,17 +22,19 @@ function os-install-updates() {
 }
 
 function os-install-basics() {
+  sudo add-apt-repository ppa:cwchien/gradle
   os-install-updates
 
   sudo apt-get install \
-    vim tree wget \ # Essential terminal tools.
-    git gitk meld \ # Git and related utilities.
-    x11vnc ssvnc \ # VNC server and client.
-    virtualbox \ # Easy to use virtualization utility.
-    keepassx \ # Password and encrypted storage.
-    kicad # CAD program for circuit design.
+    vim tree wget curl \
+    git gitk meld \
+    x11vnc ssvnc \
+    virtualbox \
+    keepassx \
+    kicad freecad \
+    chromium-browser \
+    default-jdk gradle-3.4
 
-  # Install Atom.
   wget https://atom.io/download/deb -O /tmp/atom.deb
   sudo dpkg -i /tmp/atom.deb
   sudo apt-get install -f

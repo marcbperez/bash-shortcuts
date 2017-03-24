@@ -11,7 +11,8 @@ function git-create-feature() {
 
   while true; do
     echo "Create $FEATURENAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -35,7 +36,8 @@ function git-work-on-feature() {
 
   while true; do
     echo "Work on $FEATURENAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -45,13 +47,18 @@ function git-work-on-feature() {
   done
 
   git checkout "$FEATURENAME"
-  atom .
 
   while true; do
     echo "Are all the commits made on $FEATURENAME?"
-    echo "C for the commit tool, M to merge back or E to exit."
+    echo "  - S to run ./commit-script.sh"
+    echo "  - A for the editor"
+    echo "  - C for the commit tool"
+    echo "  - M to merge back"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
+      [S]* ) source ./commit-script.sh ;;
+      [A]* ) atom . ;;
       [C]* ) meld . ;;
       [M]* ) break ;;
       [E]* ) return ;;
@@ -73,7 +80,8 @@ function git-merge-back-feature() {
 
   while true; do
     echo "Merge back $FEATURENAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
