@@ -10,7 +10,8 @@ function git-start-from-origin() {
 
   while true; do
     echo "Start repository from origin $ORIGIN?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -19,8 +20,8 @@ function git-start-from-origin() {
     esac
   done
 
-  git init
-  git remote add origin "$ORIGIN"
+  git init && \
+  git remote add origin "$ORIGIN" && \
   git-create-common-branches
 }
 
@@ -35,7 +36,8 @@ function git-create-common-branches() {
 
   while true; do
     echo "Create master and develop branches with a blank .gitignore?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -44,13 +46,12 @@ function git-create-common-branches() {
     esac
   done
 
-  touch .gitignore
-  echo "" > .gitignore
-  git add .gitignore
-  git commit .gitignore -m "$FIRST_COMMIT_MESSAGE"
-  git push -u origin master
-
-  git checkout -b develop master
+  touch .gitignore && \
+  echo "" > .gitignore && \
+  git add .gitignore && \
+  git commit .gitignore -m "$FIRST_COMMIT_MESSAGE" && \
+  git push -u origin master && \
+  git checkout -b develop master && \
   git push origin develop
 }
 
@@ -63,4 +64,30 @@ function git-commit-date() {
   fi
 
   export {GIT_AUTHOR_DATE,GIT_COMMITTER_DATE}="$COMMIT_DATE"
+}
+
+function git-reset-branch() {
+  BRANCH="$1"
+  COMMIT_ID="$2"
+
+  if [ -z "$BRANCH" ] || [ -z "$COMMIT_ID" ]; then
+    echo "Usage: ${FUNCNAME[0]} [BRANCH] [COMMIT_ID]"
+    return
+  fi
+
+  while true; do
+    echo "Do you really want to reset and push the branch?"
+    echo "  - Y to continue"
+    echo "  - E to exit"
+    read -p ">> " ANSWER
+    case $ANSWER in
+      [Y]* ) break ;;
+      [E]* ) return ;;
+      * ) echo "Not a valid answer." ;;
+    esac
+  done
+
+  git checkout $BRANCH && \
+  git reset --hard $COMMIT_ID && \
+  git push -f origin $BRANCH
 }

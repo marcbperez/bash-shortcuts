@@ -11,7 +11,8 @@ function git-create-hotfix() {
 
   while true; do
     echo "Create $HOTFIXNAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -35,7 +36,8 @@ function git-work-on-hotfix() {
 
   while true; do
     echo "Work on $HOTFIXNAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
@@ -45,13 +47,18 @@ function git-work-on-hotfix() {
   done
 
   git checkout "$HOTFIXNAME"
-  atom .
 
   while true; do
-    echo "Is the version bumped and all the commits made on $HOTFIXNAME?"
-    echo "C for the commit tool, M to merge back or E to exit."
+    echo "Are all the commits made on $HOTFIXNAME?"
+    echo "  - S to run ./commit-script.sh"
+    echo "  - A for the editor"
+    echo "  - C for the commit tool"
+    echo "  - M to merge back"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
+      [S]* ) source ./commit-script.sh ;;
+      [A]* ) atom . ;;
       [C]* ) meld . ;;
       [M]* ) break ;;
       [E]* ) return ;;
@@ -73,7 +80,8 @@ function git-merge-back-hotfix() {
 
   while true; do
     echo "Merge back $HOTFIXNAME?"
-    echo "Answer Y to continue or E to exit."
+    echo "  - Y to continue"
+    echo "  - E to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
