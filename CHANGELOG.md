@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## Unreleased
+
+### Added
+
+  - Nicer input queries.
+  - More packages to the essentials list.
+  - Docker installation shortcuts.
+
 ## 0.6.1 - 2017-03-21
 
 ### Added
