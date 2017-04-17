@@ -21,6 +21,7 @@ function git-create-hotfix() {
     esac
   done
 
+  git checkout master
   git checkout -b "$HOTFIXNAME" master
   git-work-on-hotfix "$VERSION"
 }

@@ -21,6 +21,7 @@ function git-create-feature() {
     esac
   done
 
+  git checkout develop
   git checkout -b "$FEATURENAME" develop
   git-work-on-feature "$NAME"
 }
