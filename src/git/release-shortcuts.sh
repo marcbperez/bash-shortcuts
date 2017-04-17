@@ -21,6 +21,7 @@ function git-create-release() {
     esac
   done
 
+  git checkout develop
   git checkout -b "$RELEASENAME" develop
   git-work-on-release "$VERSION"
 }
