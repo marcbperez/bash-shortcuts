@@ -6,7 +6,7 @@ function make_shortcuts() {
   SHORTCUTS="\
   echo -e '\e[92mActivating $PREFIX shortcuts:\e[39m'; \
   for f in $DIRNAME/$PREFIX/*-shortcuts.sh; do source \$f; done; \
-  typeset -f | grep \ \(\) | grep --color=never $PREFIX\-; "
+  typeset -f | grep \ \(\) | grep --color=never $PREFIX\- | cut -d ' ' -f1;"
 }
 
 DIRNAME="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
