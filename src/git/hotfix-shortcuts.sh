@@ -4,8 +4,10 @@ function git-create-hotfix() {
   VERSION="$1"
   HOTFIXNAME="hotfix-$VERSION"
 
-  if [ -z "$VERSION" ]; then
+  if [ "$1" == "?" ] || [ -z "$VERSION" ]; then
+    echo "${FUNCNAME[0]} creates a new hotfix."
     echo "Usage: ${FUNCNAME[0]} [VERSION]"
+    echo "Example: ${FUNCNAME[0]} 0.0.1"
     return
   fi
 
@@ -21,8 +23,8 @@ function git-create-hotfix() {
     esac
   done
 
-  git checkout master
-  git checkout -b "$HOTFIXNAME" master
+  git checkout master &&
+  git checkout -b "$HOTFIXNAME" master &&
   git-work-on-hotfix "$VERSION"
 }
 
@@ -30,8 +32,10 @@ function git-work-on-hotfix() {
   VERSION="$1"
   HOTFIXNAME="hotfix-$VERSION"
 
-  if [ -z "$VERSION" ]; then
+  if [ "$1" == "?" ] || [ -z "$VERSION" ]; then
+    echo "${FUNCNAME[0]} checks out a hotfix."
     echo "Usage: ${FUNCNAME[0]} [VERSION]"
+    echo "Example: ${FUNCNAME[0]} 0.0.1"
     return
   fi
 
@@ -74,8 +78,10 @@ function git-merge-back-hotfix() {
   VERSION="$1"
   HOTFIXNAME="hotfix-$VERSION"
 
-  if [ -z "$VERSION" ]; then
+  if [ "$1" == "?" ] || [ -z "$VERSION" ]; then
+    echo "${FUNCNAME[0]} merges back a hotfix into master and develop."
     echo "Usage: ${FUNCNAME[0]} [VERSION]"
+    echo "Example: ${FUNCNAME[0]} 0.0.1"
     return
   fi
 
@@ -91,10 +97,10 @@ function git-merge-back-hotfix() {
     esac
   done
 
-  git checkout master
-  git merge --no-ff "$HOTFIXNAME" -m "Merged $HOTFIXNAME."
-  git tag -a "$VERSION" -m "Tagged as $VERSION."
-  git checkout develop
-  git merge --no-ff "$HOTFIXNAME" -m "Merged $HOTFIXNAME."
+  git checkout master &&
+  git merge --no-ff "$HOTFIXNAME" -m "Merged $HOTFIXNAME." &&
+  git tag -a "$VERSION" -m "Tagged as $VERSION." &&
+  git checkout develop &&
+  git merge --no-ff "$HOTFIXNAME" -m "Merged $HOTFIXNAME." &&
   git push origin "$HOTFIXNAME" "$VERSION" master develop
 }

@@ -4,8 +4,10 @@ function git-create-release() {
   VERSION="$1"
   RELEASENAME="release-$VERSION"
 
-  if [ -z "$VERSION" ]; then
+  if [ "$1" == "?" ] || [ -z "$VERSION" ]; then
+    echo "${FUNCNAME[0]} creates a new release."
     echo "Usage: ${FUNCNAME[0]} [VERSION]"
+    echo "Example: ${FUNCNAME[0]} 0.1.0"
     return
   fi
 
@@ -21,8 +23,8 @@ function git-create-release() {
     esac
   done
 
-  git checkout develop
-  git checkout -b "$RELEASENAME" develop
+  git checkout develop &&
+  git checkout -b "$RELEASENAME" develop &&
   git-work-on-release "$VERSION"
 }
 
@@ -30,8 +32,10 @@ function git-work-on-release() {
   VERSION="$1"
   RELEASENAME="release-$VERSION"
 
-  if [ -z "$VERSION" ]; then
+  if [ "$1" == "?" ] || [ -z "$VERSION" ]; then
+    echo "${FUNCNAME[0]} checks out a release."
     echo "Usage: ${FUNCNAME[0]} [VERSION]"
+    echo "Example: ${FUNCNAME[0]} 0.1.0"
     return
   fi
 
@@ -74,8 +78,10 @@ function git-merge-back-release() {
   VERSION="$1"
   RELEASENAME="release-$VERSION"
 
-  if [ -z "$VERSION" ]; then
+  if [ "$1" == "?" ] || [ -z "$VERSION" ]; then
+    echo "${FUNCNAME[0]} merges back a hotfix into develop."
     echo "Usage: ${FUNCNAME[0]} [VERSION]"
+    echo "Example: ${FUNCNAME[0]} 0.1.0"
     return
   fi
 
@@ -91,18 +97,19 @@ function git-merge-back-release() {
     esac
   done
 
-  git checkout develop
-  git merge --no-ff "$RELEASENAME" -m "Merged $RELEASENAME."
-  git push origin "$RELEASENAME" develop
-
+  git checkout develop &&
+  git merge --no-ff "$RELEASENAME" -m "Merged $RELEASENAME." &&
+  git push origin "$RELEASENAME" develop &&
   git-merge-back-develop "$VERSION"
 }
 
 function git-merge-back-develop() {
   VERSION="$1"
 
-  if [ -z "$VERSION" ]; then
+  if [ "$1" == "?" ] || [ -z "$VERSION" ]; then
+    echo "${FUNCNAME[0]} merges back develop and tags master."
     echo "Usage: ${FUNCNAME[0]} [VERSION]"
+    echo "Example: ${FUNCNAME[0]} 0.1.0"
     return
   fi
 
@@ -118,8 +125,8 @@ function git-merge-back-develop() {
     esac
   done
 
-  git checkout master
-  git merge --no-ff develop -m "Merged development version $VERSION."
-  git tag -a "$VERSION" -m "Tagged as $VERSION."
+  git checkout master &&
+  git merge --no-ff develop -m "Merged development version $VERSION." &&
+  git tag -a "$VERSION" -m "Tagged as $VERSION." &&
   git push origin "$VERSION" master
 }
