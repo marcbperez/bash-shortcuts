@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## Unreleased
+
+### Added
+
+  - Shortcuts to clean the operating system.
+
+### Changed
+
+  - Usage instructions and typo error in README file.
+  - Clean method names while activating.
+  - All shortcuts with help message and revision.
+
 ## 0.7.1 - 2017-04-17
 
 ### Fixed
