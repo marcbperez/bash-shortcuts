@@ -5,6 +5,8 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.8.0 - 2017-07-08
+
 ### Added
 
   - Shortcuts to clean the operating system.
