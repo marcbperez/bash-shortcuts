@@ -1,7 +1,7 @@
 # bash-shortcuts
 
 Bash scripts to automate daily repetitive tasks. Includes shortcuts for Git,
-VNC, Docker and other miscelaneous actions.
+VNC, Docker and other miscellaneous actions.
 
 ## Installation
 
@@ -17,7 +17,8 @@ cd bash-shortcuts
 
 After the installation process the shortcuts need to be activated by including
 the `activate.sh` script, this will make the shortcuts available as aliases for
-the current shell session.
+the current shell session. Add the command to your `~/.bashrc` file to include
+the methods every time a session starts.
 
 ```bash
 source src/activate.sh

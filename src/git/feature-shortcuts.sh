@@ -4,8 +4,10 @@ function git-create-feature() {
   NAME="$1"
   FEATURENAME="feature-$NAME"
 
-  if [ -z "$NAME" ]; then
+  if [ "$1" == "?" ] || [ -z "$NAME" ]; then
+    echo "${FUNCNAME[0]} creates a new feature."
     echo "Usage: ${FUNCNAME[0]} [NAME]"
+    echo "Example: ${FUNCNAME[0]} my-feature"
     return
   fi
 
@@ -21,8 +23,8 @@ function git-create-feature() {
     esac
   done
 
-  git checkout develop
-  git checkout -b "$FEATURENAME" develop
+  git checkout develop &&
+  git checkout -b "$FEATURENAME" develop &&
   git-work-on-feature "$NAME"
 }
 
@@ -30,8 +32,10 @@ function git-work-on-feature() {
   NAME="$1"
   FEATURENAME="feature-$NAME"
 
-  if [ -z "$NAME" ]; then
+  if [ "$1" == "?" ] || [ -z "$NAME" ]; then
+    echo "${FUNCNAME[0]} checks out a feature."
     echo "Usage: ${FUNCNAME[0]} [NAME]"
+    echo "Example: ${FUNCNAME[0]} my-feature"
     return
   fi
 
@@ -74,8 +78,10 @@ function git-merge-back-feature() {
   NAME="$1"
   FEATURENAME="feature-$NAME"
 
-  if [ -z "$NAME" ]; then
+  if [ "$1" == "?" ] || [ -z "$NAME" ]; then
+    echo "${FUNCNAME[0]} merges back a feature into develop."
     echo "Usage: ${FUNCNAME[0]} [NAME]"
+    echo "Example: ${FUNCNAME[0]} my-feature"
     return
   fi
 
@@ -91,7 +97,7 @@ function git-merge-back-feature() {
     esac
   done
 
-  git checkout develop
-  git merge --no-ff "$FEATURENAME" -m "Merged $FEATURENAME."
+  git checkout develop &&
+  git merge --no-ff "$FEATURENAME" -m "Merged $FEATURENAME." &&
   git push origin "$FEATURENAME" develop
 }
