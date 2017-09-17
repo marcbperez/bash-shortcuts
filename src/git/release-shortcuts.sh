@@ -14,11 +14,11 @@ function git-create-release() {
   while true; do
     echo "Create $RELEASENAME?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -42,11 +42,11 @@ function git-work-on-release() {
   while true; do
     echo "Work on $RELEASENAME?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -54,19 +54,21 @@ function git-work-on-release() {
   git checkout "$RELEASENAME"
 
   while true; do
-    echo "Are all the commits made on $RELEASENAME?"
-    echo "  - S to run ./commit-script.sh"
+    echo "Are all the commits made on $FEATURENAME?"
     echo "  - A for the editor"
     echo "  - C for the commit tool"
+    echo "  - D to set the commit date"
     echo "  - M to merge back"
-    echo "  - E to exit"
+    echo "  - S to run ./commit-script.sh"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
-      [S]* ) source ./commit-script.sh ;;
       [A]* ) atom . ;;
       [C]* ) meld . ;;
+      [D]* ) read -p "Set date: " NEWDATE && git-commit-date "$NEWDATE" ;;
       [M]* ) break ;;
-      [E]* ) return ;;
+      [S]* ) source ./commit-script.sh ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -88,11 +90,11 @@ function git-merge-back-release() {
   while true; do
     echo "Merge back $RELEASENAME?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -116,11 +118,11 @@ function git-merge-back-develop() {
   while true; do
     echo "Merge back develop version $VERSION?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done

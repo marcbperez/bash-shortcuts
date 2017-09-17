@@ -13,11 +13,11 @@ function git-start-from-origin() {
   while true; do
     echo "Start repository from origin $ORIGIN?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -44,11 +44,11 @@ function git-create-common-branches() {
   while true; do
     echo "Create master and develop branches with a blank .gitignore?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -89,11 +89,11 @@ function git-reset-branch() {
   while true; do
     echo "Do you really want to reset and push the branch?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done

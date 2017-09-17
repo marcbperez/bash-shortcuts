@@ -14,11 +14,11 @@ function git-create-hotfix() {
   while true; do
     echo "Create $HOTFIXNAME?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -42,11 +42,11 @@ function git-work-on-hotfix() {
   while true; do
     echo "Work on $HOTFIXNAME?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -54,19 +54,21 @@ function git-work-on-hotfix() {
   git checkout "$HOTFIXNAME"
 
   while true; do
-    echo "Are all the commits made on $HOTFIXNAME?"
-    echo "  - S to run ./commit-script.sh"
+    echo "Are all the commits made on $FEATURENAME?"
     echo "  - A for the editor"
     echo "  - C for the commit tool"
+    echo "  - D to set the commit date"
     echo "  - M to merge back"
-    echo "  - E to exit"
+    echo "  - S to run ./commit-script.sh"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
-      [S]* ) source ./commit-script.sh ;;
       [A]* ) atom . ;;
       [C]* ) meld . ;;
+      [D]* ) read -p "Set date: " NEWDATE && git-commit-date "$NEWDATE" ;;
       [M]* ) break ;;
-      [E]* ) return ;;
+      [S]* ) source ./commit-script.sh ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -88,11 +90,11 @@ function git-merge-back-hotfix() {
   while true; do
     echo "Merge back $HOTFIXNAME?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done

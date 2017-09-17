@@ -44,11 +44,11 @@ function docker-clean() {
   while true; do
     echo "Stop all containers?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -58,11 +58,11 @@ function docker-clean() {
   while true; do
     echo "Remove all containers?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -72,11 +72,11 @@ function docker-clean() {
   while true; do
     echo "Remove all images?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
@@ -86,11 +86,11 @@ function docker-clean() {
   while true; do
     echo "Prune system?"
     echo "  - Y to continue"
-    echo "  - E to exit"
+    echo "  - X to exit"
     read -p ">> " ANSWER
     case $ANSWER in
       [Y]* ) break ;;
-      [E]* ) return ;;
+      [X]* ) return ;;
       * ) echo "Not a valid answer." ;;
     esac
   done
