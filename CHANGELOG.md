@@ -5,6 +5,16 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+### Added
+
+  - OS distribution shortcuts.
+  - Silent mode on alias activation.
+  - X as hotkey to exit menus.
+  - A shortcut for Github cloning.
+  - Individual installation sets.
+  - Correct call to stop virtual VNC display.
+  - A shortcut to set PS1.
+
 ## 0.8.0 - 2017-07-08
 
 ### Added
