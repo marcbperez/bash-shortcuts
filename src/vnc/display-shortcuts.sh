@@ -31,7 +31,7 @@ function vnc-display-on() {
     -noxdamage -noxfixes -nowf -nowcr -nocursorshape -nocursorpos -cursor_drag \
     -cursor arrow &&
 
-  vnc-virtual-display-off $HRES $VRES $VIRTNO
+  vnc-display-off $HRES $VRES $VIRTNO
 }
 
 function vnc-display-off() {
