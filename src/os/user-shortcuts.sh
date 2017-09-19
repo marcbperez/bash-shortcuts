@@ -12,3 +12,14 @@ function os-user-sudoer() {
 
   sudo usermod -aG sudo $USERNAME
 }
+
+function os-user-ps1() {
+  if [ "$1" == "?" ]; then
+    echo "${FUNCNAME[0]} sets PS1."
+    echo "Usage: ${FUNCNAME[0]}"
+    echo "Example: ${FUNCNAME[0]}"
+    return
+  fi
+
+  PS1='\w : '
+}
