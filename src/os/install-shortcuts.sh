@@ -77,5 +77,5 @@ function os-install-virtualhost() {
   fi
 
   sudo apt install virtualbox &&
-  docker-install-compose
+  docker-install-compose amd64 1.19.0
 }
