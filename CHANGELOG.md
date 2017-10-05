@@ -5,6 +5,14 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.9.1 - 2017-10-05
+
+### Fixed
+
+  - Git hotfix and release menu message.
+  - Incorrect call for installing the Docker set.
+  - PS1.
+
 ## 0.9.0 - 2017-09-20
 
 ### Added

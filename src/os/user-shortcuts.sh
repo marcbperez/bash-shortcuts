@@ -21,5 +21,5 @@ function os-user-ps1() {
     return
   fi
 
-  PS1='\w : '
+  PS1='\w $ '
 }
