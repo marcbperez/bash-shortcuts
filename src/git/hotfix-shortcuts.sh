@@ -54,7 +54,7 @@ function git-work-on-hotfix() {
   git checkout "$HOTFIXNAME"
 
   while true; do
-    echo "Are all the commits made on $FEATURENAME?"
+    echo "Are all the commits made on $HOTFIXNAME?"
     echo "  - A for the editor"
     echo "  - C for the commit tool"
     echo "  - D to set the commit date"
