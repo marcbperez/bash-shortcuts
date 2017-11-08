@@ -5,6 +5,15 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+### Changed
+
+  - Project author's name.
+
+### Added
+
+  - Confirmation before activating aliases.
+  - Communication package group.
+
 ## 0.10.0 - 2017-10-17
 
 ### Added
