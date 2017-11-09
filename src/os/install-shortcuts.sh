@@ -21,6 +21,7 @@ function os-install-all() {
 
   os-install-updates &&
   os-install-basics &&
+  os-install-communication &&
   os-install-engineering &&
   os-install-development &&
   os-install-virtualhost &&
@@ -61,11 +62,12 @@ function os-install-development() {
 
   sudo add-apt-repository ppa:cwchien/gradle &&
   sudo apt update &&
-  sudo apt install git gitk meld default-jdk gradle-3.5.1 &&
+  sudo apt install git gitk meld default-jdk gradle-4.10 &&
   wget https://atom.io/download/deb -O /tmp/atom.deb &&
-  sudo dpkg -i /tmp/atom.deb &&
+  sudo dpkg -i /tmp/atom.deb
+
   sudo apt install -f &&
-  rm /tmp/atom.deb
+  rm /tmp/atom.deb 
 }
 
 function os-install-virtualhost() {
@@ -77,5 +79,21 @@ function os-install-virtualhost() {
   fi
 
   sudo apt install virtualbox &&
-  docker-install-compose "amd64" "1.19.0"
+  docker-install-compose "amd64" "1.23.2"
+}
+
+function os-install-communication() {
+  if [ "$1" == "?" ]; then
+    echo "${FUNCNAME[0]} installs communication packages."
+    echo "Usage: ${FUNCNAME[0]}"
+    echo "Example: ${FUNCNAME[0]}"
+    return
+  fi
+
+  curl -s https://updates.signal.org/desktop/apt/keys.asc \
+    | sudo apt-key add - &&
+  echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" \
+    | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list &&
+  sudo apt update &&
+  sudo apt install signal-desktop
 }
