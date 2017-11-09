@@ -5,6 +5,8 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.11.0 - 2017-11-09
+
 ### Changed
 
   - Project author's name.
