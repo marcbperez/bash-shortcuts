@@ -120,5 +120,5 @@ function docker-clean() {
     esac
   done
 
-  sudo docker system prune -f
+  sudo docker system prune -af
 }

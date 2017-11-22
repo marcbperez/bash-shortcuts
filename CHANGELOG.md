@@ -5,6 +5,14 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.11.1 - 2017-11-22
+
+### Fixed
+
+  - Activation script welcome message.
+  - Docker cache cleaning.
+  - Project author's name.
+
 ## 0.11.0 - 2017-11-09
 
 ### Changed
