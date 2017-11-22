@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 read -p "Do you want to enable bash-shortcuts? " -n 1 -r
-if ! [[ $REPLY =~ ^[Yy]$ ]]; then return; else echo; fi
+if ! [[ $REPLY =~ ^[Yy]$ ]]; then echo && return; else echo; fi
 
 shopt -s expand_aliases
 
