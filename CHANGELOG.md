@@ -5,6 +5,10 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+### Added
+
+  - An utility to clean docker volumes.
+
 ## 0.9.1 - 2017-10-05
 
 ### Fixed
