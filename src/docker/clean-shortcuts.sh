@@ -33,6 +33,17 @@ function docker-remove-images() {
   sudo docker rmi $(sudo docker images -q)
 }
 
+function docker-remove-volumes() {
+  if [ "$1" == "?" ]; then
+    echo "${FUNCNAME[0]} removes all Docker volumes."
+    echo "Usage: ${FUNCNAME[0]}"
+    echo "Example: ${FUNCNAME[0]}"
+    return
+  fi
+
+  sudo docker volume rm $(sudo docker volume ls -qf dangling=true)
+}
+
 function docker-clean() {
   if [ "$1" == "?" ]; then
     echo "${FUNCNAME[0]} cleans the Docker environment."
@@ -82,6 +93,20 @@ function docker-clean() {
   done
 
   docker-remove-images
+
+  while true; do
+    echo "Remove all volumes?"
+    echo "  - Y to continue"
+    echo "  - X to exit"
+    read -p ">> " ANSWER
+    case $ANSWER in
+      [Y]* ) break ;;
+      [X]* ) return ;;
+      * ) echo "Not a valid answer." ;;
+    esac
+  done
+
+  docker-remove-volumes
 
   while true; do
     echo "Prune system?"
